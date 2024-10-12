@@ -19,13 +19,13 @@ public class HelloWorldController
 
     @GetMapping("/helloworld")
     public String helloWorld() {
-        if (registryRegistrar.getURL("HelloWorld") == null) {
+        if (registryRegistrar.getService("HelloWorld") == null) {
             String msg = "The HelloWorld service is not registered and cannot process /helloworld";
             System.out.println("Registry : " + msg);
             return msg;
         }
 
-        String result = WebClient.builder().baseUrl(registryRegistrar.getURL("HelloWorld")).build().get().uri("/").retrieve().bodyToMono(String.class)
+        String result = WebClient.builder().baseUrl(registryRegistrar.getService("HelloWorld").getUrl()).build().get().uri("/").retrieve().bodyToMono(String.class)
                 .timeout(Duration.ofSeconds(timeoutSeconds))
                 .onErrorResume(Exception.class, ex -> Mono.just(null))
                 .block();

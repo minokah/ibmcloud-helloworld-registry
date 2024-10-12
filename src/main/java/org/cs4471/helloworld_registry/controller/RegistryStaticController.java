@@ -13,7 +13,7 @@ public class RegistryStaticController {
 
     @GetMapping("/")
     public String Root(Model model) {
-        model.addAttribute("HelloWorldURL", registryRegistrar.getURL("HelloWorld"));
+        model.addAttribute("entries", registryRegistrar.getServicesList());
         return "listing";
     }
 }
