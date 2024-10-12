@@ -10,11 +10,14 @@
                 <h1>Service Listing</h1>
                 <br>
                 <ul class="list-group">
-                    <li class="list-group-item active">
-                        <b>HelloWorld</b>
-                    </li>
-                    <li class="list-group-item" th:if="${HelloWorldURL == null}">No URL registered</li>
-                    <li class="list-group-item" th:if="${HelloWorldURL != null}" th:text="${HelloWorldURL}">URL</li>
+                    <div th:if="${HelloWorldURL == null}">
+                        <li class="list-group-item list-group-item-danger"><b>HelloWorld</b></li>
+                        <li class="list-group-item">No URL registered</li>
+                    </div>
+                    <div th:if="${HelloWorldURL != null}">
+                        <li class="list-group-item list-group-item-info"><b>HelloWorld</b></li>
+                        <li class="list-group-item" th:text="${HelloWorldURL}">URL</li>
+                    </div>
                 </ul>
             </div>
             <div class="col"></div>

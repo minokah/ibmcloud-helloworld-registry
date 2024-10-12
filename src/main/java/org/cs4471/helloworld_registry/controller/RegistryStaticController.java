@@ -14,6 +14,6 @@ public class RegistryStaticController {
     @GetMapping("/")
     public String Root(Model model) {
         model.addAttribute("HelloWorldURL", registryService.getURL("HelloWorld"));
-        return "hello";
+        return "listing";
     }
 }
