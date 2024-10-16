@@ -1,7 +1,8 @@
 package org.cs4471.helloworld_registry.controller;
 
+import com.google.gson.Gson;
 import jakarta.servlet.http.HttpServletRequest;
-import org.cs4471.helloworld_registry.RegistryStatus;
+import org.cs4471.helloworld_registry.Response;
 import org.cs4471.helloworld_registry.service.RegistryRegistrar;
 import org.cs4471.helloworld_registry.service.ServiceEntry;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,29 +22,28 @@ public class RegistryController {
     }
 
     @GetMapping("/register")
-    public String Register(HttpServletRequest request) {
+    public Response Register(HttpServletRequest request) {
         String name = request.getParameter("name");
         String url = request.getParameter("url");
         String desc = request.getParameter("desc");
 
         if (registryRegistrar.addService(new ServiceEntry(name, url, desc))) {
             System.out.println(String.format("Registry : Service Registered : %s : %s : %s", name, url, desc));
-            return RegistryStatus.REGISTRY_STATUS.SUCCESS.toString();
+            return new Response(200, "Registry", String.format("Successfully registered %s service", name));
         }
 
-        return RegistryStatus.REGISTRY_STATUS.FAILURE.toString();
+        return new Response(404, "Registry", String.format("Failed to register %s service", name));
     }
 
     @GetMapping("/deregister")
-    public String Deregister(HttpServletRequest request) {
-        String service = request.getParameter("service");
+    public Response Deregister(HttpServletRequest request) {
+        String name = request.getParameter("name");
 
-        if (registryRegistrar.removeService(service)) {
-            String msg = String.format("Registry : Service Deregistered : %s", service);
-            System.out.println(msg);
-            return msg;
+        if (registryRegistrar.removeService(name)) {
+            System.out.println(String.format("Registry : Service Deregistered : %s", name));
+            return new Response(200, "Registry", String.format("Successfully deregistered %s service", name));
         }
 
-        return String.format("Could not remove service %s!", service);
+        return new Response(404, "Registry", String.format("%s Service was not found in registry", name));
     }
 }

@@ -15,13 +15,17 @@ public class RegistryRegistrar {
         return true;
     }
 
-    public boolean removeService(String service) {
-        if (services.containsKey(service)) {
-            services.remove(service);
+    public boolean removeService(String entry) {
+        if (services.containsKey(entry)) {
+            services.remove(entry);
             return true;
         }
 
         return false;
+    }
+
+    public boolean removeService(ServiceEntry entry) {
+        return removeService(entry.getName());
     }
 
     public ServiceEntry getService(String s) {
