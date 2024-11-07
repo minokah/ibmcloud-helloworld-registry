@@ -1,4 +1,4 @@
-package org.cs4471.helloworld_registry.service;
+package org.cs4471.registry.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;

@@ -1,6 +1,6 @@
-package org.cs4471.helloworld_registry;
+package org.cs4471.registry;
 
-import org.cs4471.helloworld_registry.service.RegistryHeartbeat;
+import org.cs4471.registry.service.RegistryHeartbeat;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;

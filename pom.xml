@@ -9,10 +9,10 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>org.cs4471</groupId>
-	<artifactId>helloworld-registry</artifactId>
+	<artifactId>registry</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>helloworld-registry</name>
-	<description>Hello World registry</description>
+	<name>registry</name>
+	<description>Registry service for microservices</description>
 	<url/>
 	<licenses>
 		<license/>

@@ -1,4 +1,4 @@
-package org.cs4471.helloworld_registry;
+package org.cs4471.registry;
 
 import lombok.Getter;
 import lombok.Setter;
