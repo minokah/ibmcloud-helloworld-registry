@@ -79,11 +79,11 @@ public class RegistryController {
         boolean keep = true;
         for (ServiceEntry s : entries) {
             if (nameFilter != null && !nameFilter.isEmpty()) {
-                if (!s.getName().contains(nameFilter)) keep = false;
+                if (!s.getName().toLowerCase().contains(nameFilter.toLowerCase())) keep = false;
             }
 
             if (descFitler != null && !descFitler.isEmpty()) {
-                if (!s.getDesc().contains(descFitler)) keep = false;
+                if (!s.getDesc().toLowerCase().contains(descFitler.toLowerCase())) keep = false;
             }
 
             if (!keep) toRemove.add(s);
