@@ -45,6 +45,11 @@ public class RegistryController {
             return new Response(200, "Registry", String.format("Service %s is already registered on URL %s", entry.getName(), entry.getUrl()));
         }
 
+        // Don't add if any fields are blank
+        if (name.isEmpty() || url.isEmpty() || desc.isEmpty()) {
+            return new Response(400, "Registry", "Fields cannot be blank when registering a service");
+        }
+
         // Add new service
         if (registrar.addService(new ServiceEntry(name, url, desc))) {
             System.out.println(String.format("Registry : Service Registered : %s : %s : %s", name, url, desc));

@@ -56,10 +56,17 @@ public class Application implements ApplicationRunner {
 			}
 
 			if (entries != null && !entries.isEmpty()) {
+				int count = 0;
 				for (LinkedHashMap<String, String> s : entries) {
-					registrar.addService(new ServiceEntry(s.get("name"), s.get("url"), s.get("desc")));
+					// Prevent any empty string from being entered
+					if (s.containsKey("name") && !s.get("name").isEmpty()
+							&& s.containsKey("url") && !s.get("url").isEmpty()
+							&& s.containsKey("desc") && !s.get("desc").isEmpty()) {
+						registrar.addService(new ServiceEntry(s.get("name"), s.get("url"), s.get("desc")));
+						count++;
+					}
 				}
-				System.out.println(String.format("Registry: Synced %d services", entries.size()));
+				System.out.println(String.format("Registry: Synced %d services", count));
 			}
 			else System.out.println("Registry : No sync needed (registry is down or empty list)");
 		}
