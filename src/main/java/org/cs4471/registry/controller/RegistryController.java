@@ -81,8 +81,8 @@ public class RegistryController {
         ArrayList<ServiceEntry> entries = registrar.getServicesList();
         ArrayList<ServiceEntry> toRemove = new ArrayList<>();
 
-        boolean keep = true;
         for (ServiceEntry s : entries) {
+            boolean keep = true;
             if (nameFilter != null && !nameFilter.isEmpty()) {
                 if (!s.getName().toLowerCase().contains(nameFilter.toLowerCase())) keep = false;
             }
